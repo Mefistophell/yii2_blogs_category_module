@@ -1,0 +1,12 @@
+{
+    "name": "nill/yii2-blogs-category-module",
+    "description": "Blogs Category module for Yii2-start",
+    "authors": [
+        {
+            "name": "Nill Mefistophell",
+            "email": "asklepiy@i.ua"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

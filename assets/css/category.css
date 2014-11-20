@@ -1,0 +1,7 @@
+.category {
+    overflow: hidden;
+}
+.category_item {
+    float: left; 
+    padding-right: 5px;
+}
