@@ -3,6 +3,7 @@
 namespace nill\blogs_category\models;
 
 use nill\blogs_category\Module;
+use vova07\blogs\models\backend\Blog;
 use Yii;
 
 /**
@@ -53,6 +54,9 @@ class BlogsCategory extends \yii\db\ActiveRecord
     public static function getCategory()
     {
         return $customers = self::find()
+            ->joinWith('category_id')
+            ->where('category_id')
+            ->distinct(true)
             ->asArray()
             ->all();
         
@@ -65,5 +69,9 @@ class BlogsCategory extends \yii\db\ActiveRecord
         }
         return $category_name;
         */
+    }
+    public function getCategory_id()
+    {
+        return $this->hasOne(Blog::className(), ['category_id' => 'id']);
     }
 }
