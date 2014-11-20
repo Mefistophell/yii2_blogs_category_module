@@ -105,7 +105,7 @@ public function getCategory()
 
 - Add in _form:
 
-`vendor\nill\yii2_blogs_category_module\views\backend\default\_form.php`
+`vendor\vova07\yii2-start-blogs-module\views\backend\default\_form.php`
 
 this code:
 ```
@@ -114,7 +114,8 @@ use yii\helpers\ArrayHelper;
 
 
 $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(
-Category::find()->asArray()->all(), 'id', 'category_name'),                               ['prompt'=>'Select category']);
+Category::find()->asArray()->all(), 'id', 'category_name'),
+['prompt'=>'Select category']);
 
 ```
 
