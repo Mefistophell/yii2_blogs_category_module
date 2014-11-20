@@ -85,8 +85,7 @@ Yii::setAlias('backend', dirname(dirname(__DIR__)) . '/backend');
 ALTER TABLE yii2_start_blogs ADD category_id INT(11) NOT NULL; 
 ```
 
-OR: 
-- Apply migration with console commands:
+OR: Apply migration with console commands:
 
 `php yii migrate --migrationPath=@nill/blogs_category/migrations`
 
