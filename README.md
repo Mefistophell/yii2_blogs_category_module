@@ -91,7 +91,7 @@ OR: Apply migration with console commands:
 
 - Add in Blog Model:
 
-`vendor\vova07\yii2-start-blogs-module\models\backend\Blog`
+`vendor\vova07\yii2-start-blogs-module\models\backend\Blog.php`
 
 this code:
 ```
@@ -105,7 +105,7 @@ public function getCategory()
 
 - Add in _form:
 
-`vendor\vova07\yii2-start-blogs-module\models\backend\Blog`
+`vendor\nill\yii2_blogs_category_module\views\backend\default\_form.php`
 
 this code:
 ```
@@ -123,7 +123,7 @@ Category::find()->asArray()->all(), 'id', 'category_name'),                     
 IN: 
 `vendor\vova07\yii2-start-blogs-module\views\frontend\default`
 
-add:
+add this code:
 ```
 use nill\blogs_category\widgets\WidgetCategory;
 WidgetCategory::widget();
