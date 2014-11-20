@@ -122,7 +122,7 @@ Category::find()->asArray()->all(), 'id', 'category_name'),
 - Add widget on your page. For example:
 
 IN: 
-`vendor\vova07\yii2-start-blogs-module\views\frontend\default`
+`vendor\vova07\yii2-start-blogs-module\views\frontend\default\index.php`
 
 add this code:
 ```
