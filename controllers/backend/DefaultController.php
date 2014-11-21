@@ -5,7 +5,7 @@ namespace nill\blogs_category\controllers\backend;
 use Yii;
 use nill\blogs_category\models\BlogsCategory;
 use nill\blogs_category\models\BlogsCategorySearch;
-use yii\web\Controller;
+use vova07\admin\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -14,16 +14,52 @@ use yii\filters\VerbFilter;
  */
 class DefaultController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        $behaviors = parent::behaviors();
+
+        $behaviors['access']['rules'] = [
+            [
+                'allow' => true,
+                'actions' => ['index', 'view'],
+                'roles' => ['BViewBlogs']
+            ]
         ];
+        $behaviors['access']['rules'][] = [
+            'allow' => true,
+            'actions' => ['create'],
+            'roles' => ['BCreateBlogs']
+        ];
+        $behaviors['access']['rules'][] = [
+            'allow' => true,
+            'actions' => ['update'],
+            'roles' => ['BUpdateBlogs']
+        ];
+        $behaviors['access']['rules'][] = [
+            'allow' => true,
+            'actions' => ['delete', 'batch-delete'],
+            'roles' => ['BDeleteBlogs']
+        ];
+        $behaviors['access']['rules'][] = [
+            'allow' => true,
+            'actions' => ['imperavi-get', 'imperavi-image-upload', 'imperavi-file-upload', 'fileapi-upload'],
+            'roles' => ['BCreateBlogs', 'BUpdateBlogs']
+        ];
+        $behaviors['verbs'] = [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'index' => ['get'],
+                'create' => ['get', 'post'],
+                'update' => ['get', 'put', 'post'],
+                'delete' => ['post', 'delete'],
+                'batch-delete' => ['post', 'delete']
+            ]
+        ];
+
+        return $behaviors;
     }
 
     /**
@@ -60,7 +96,7 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new BlogsCategory();
+        $model = new BlogsCategory(['scenario' => 'admin-create']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -80,6 +116,7 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->setScenario('admin-update');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

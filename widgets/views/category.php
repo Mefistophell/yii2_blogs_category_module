@@ -1,4 +1,6 @@
-<h4>Categories</h4>
+<h4>
+    <?= nill\blogs_category\Module::t('blogs_category', 'Categories') ?>
+</h4>
 <hr>
 <ul class="unstyled category">
     <?php foreach($category as $key=>$value) { ?>

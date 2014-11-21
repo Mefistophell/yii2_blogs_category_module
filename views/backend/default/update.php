@@ -1,14 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use nill\blogs_category\Module;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BlogsCategory */
 
-$this->title = 'Update Blogs Category: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Blogs Categories', 'url' => ['index']];
+$this->title = Module::t('blogs_category', 'Update').': ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Module::t('blogs_category', 'Blogs Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Module::t('blogs_category', 'Update');
 ?>
 <div class="blogs-category-update">
 

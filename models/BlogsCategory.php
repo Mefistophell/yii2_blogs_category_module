@@ -41,12 +41,27 @@ class BlogsCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'category_name' => 'Category Name',
-            'category_description' => 'Category Description',
+            'id' => Module::t('blogs_category', 'ID'),
+            'category_name' => Module::t('blogs_category', 'Category name'),
+            'category_description' => Module::t('blogs_category', 'Category description'),
         ];
     }
     
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['admin-create'] = [
+            'category_name',
+            'category_description',
+        ];
+        $scenarios['admin-update'] = [
+            'category_name',
+            'category_description',
+        ];
+
+        return $scenarios;
+    }
+
     /*
     * Method for get name of Blogs Category
     * @return array value name Category

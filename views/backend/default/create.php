@@ -1,13 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-
+use nill\blogs_category\Module;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BlogsCategory */
 
-$this->title = 'Create Blogs Category';
-$this->params['breadcrumbs'][] = ['label' => 'Blogs Categories', 'url' => ['index']];
+$this->title = Module::t('blogs_category', 'Create category');
+$this->params['breadcrumbs'][] = ['label' => Module::t('blogs_category', 'Blogs Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blogs-category-create">
