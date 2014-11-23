@@ -103,6 +103,25 @@ public function getCategory()
 }
 ```
 
+- Change actionIndex in Controller: 
+
+`vendor\vova07\yii2-start-blogs-module\controllers\frontend\DefaultController.php`
+
+
+```
+function actionIndex($category='')
+{
+    $query=Blog::find()->published();
+    $dataProvider = new ActiveDataProvider([
+        'query' => $query,
+        'pagination' => [
+            'pageSize' => $this->module->recordsPerPage
+        ]
+    ]);
+    
+    $query->andFilterWhere(['like', 'category_id', $category]);
+```
+
 - Add in _form:
 
 `vendor\vova07\yii2-start-blogs-module\views\backend\default\_form.php`
