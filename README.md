@@ -148,3 +148,17 @@ add this code:
 use nill\blogs_category\widgets\WidgetCategory;
 WidgetCategory::widget();
 ```
+
+Backend
+----------------------------
+For work of the module in the backend follows add it to the menu:
+`vendor\vova07\yii2-start-themes\admin\views\layouts\sidebar-menu.php`
+
+```
+[
+    'label' => 'Blogs Category'),
+    'url' => ['/blogs_category/default/index'],
+    'icon' => 'fa-folder-open',
+    'visible' => Yii::$app->user->can('administrateBlogs') || Yii::$app->user->can('BViewBlogs'),
+],
+```
