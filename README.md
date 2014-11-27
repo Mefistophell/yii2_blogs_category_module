@@ -24,7 +24,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require nill/yii2_blogs_category_module "dev-master"
+php composer.phar require nill/yii2-blogs-category-module "dev-master"
 ```
 
 or add
