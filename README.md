@@ -67,7 +67,7 @@ Yii::setAlias('backend', dirname(dirname(__DIR__)) . '/backend');
 - Add module to extensions "vendor\yiisoft\extensions.php":
 
 ```
-'nill/slider' => 
+'nill/blogs_category' => 
     array (
         'name' => 'nill/yii2_blogs_category_module',
         'version' => '0.1.0.0',
