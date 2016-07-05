@@ -51,11 +51,24 @@ Configuration
 - Add module to [backend] config section:
 
 ```
-'modules' => [
-    'blogs_category' => [
-        'class' => 'nill\blogs_category\Module'
-    ]
-]
+'blogs_category' => [
+    'isBackend' => true
+],
+```
+- Add module to [frontend] config section:
+
+```
+'blogs_category' => [
+    'controllerNamespace' => 'nill\blogs_category\controllers\frontend'
+],
+```
+
+- Add module to [common] config section:
+
+```
+'blogs_category' => [
+    'class' => 'nill\blogs_category\Module'
+],
 ```
 
 - Add alias to "common\config\aliases.php":
@@ -64,19 +77,19 @@ Configuration
 Yii::setAlias('backend', dirname(dirname(__DIR__)) . '/backend');
 ```
 
-- Add module to extensions "vendor\yiisoft\extensions.php":
+- Add the module to extensions in the top of the file "vendor\yiisoft\extensions.php":
 
 ```
-'nill/blogs_category' => 
-    array (
-        'name' => 'nill/yii2_blogs_category_module',
+'nill/blogs_category' =>
+    array(
+        'name' => 'nill/yii2-blogs-category-module',
         'version' => '0.1.0.0',
-        'alias' => 
-        array (
-            '@nill/blogs_category' => $vendorDir . '/nill/yii2_blogs_category_module',
+        'alias' =>
+        array(
+            '@nill/blogs_category' => $vendorDir . '/nill/yii2-blogs-category-module',
+        ),
+        'bootstrap' => 'nill\\blogs_category\\Bootstrap',
     ),
-    'bootstrap' => 'nill\\blogs_category\\Bootstrap',
-), 
 ```
 
 - Create a new table in your database from file: `yii2_start_blogs_category.sql`
@@ -89,65 +102,6 @@ OR: Apply migration with console commands:
 
 `php yii migrate --migrationPath=@nill/blogs_category/migrations`
 
-- Add in Blog Model:
-
-`vendor\vova07\yii2-start-blogs-module\models\backend\Blog.php`
-
-this code:
-```
-use nill\blogs_category\models\BlogsCategory as Category;
-
-public function getCategory()
-{
-    return $this->hasOne(Category::className(), ['id' => 'category_id']);
-}
-```
-
-- Change actionIndex in Controller: 
-
-`vendor\vova07\yii2-start-blogs-module\controllers\frontend\DefaultController.php`
-
-
-```
-function actionIndex($category='')
-{
-    $query=Blog::find()->published();
-    $dataProvider = new ActiveDataProvider([
-        'query' => $query,
-        'pagination' => [
-            'pageSize' => $this->module->recordsPerPage
-        ]
-    ]);
-    
-    $query->andFilterWhere(['like', 'category_id', $category]);
-```
-
-- Add in _form:
-
-`vendor\vova07\yii2-start-blogs-module\views\backend\default\_form.php`
-
-this code:
-```
-use nill\blogs_category\models\BlogsCategory as Category;
-use yii\helpers\ArrayHelper;
-
-
-$form->field($model, 'category_id')->dropDownList(ArrayHelper::map(
-Category::find()->asArray()->all(), 'id', 'category_name'),
-['prompt'=>'Select category']);
-
-```
-
-- Add widget on your page. For example:
-
-IN: 
-`vendor\vova07\yii2-start-blogs-module\views\frontend\default\index.php`
-
-add this code:
-```
-use nill\blogs_category\widgets\WidgetCategory;
-WidgetCategory::widget();
-```
 
 Backend
 ----------------------------
