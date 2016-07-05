@@ -19,6 +19,7 @@ class Bootstrap implements BootstrapInterface
             [
                 'POST <_m:blogs_category>' => '<_m>/user/create',
                 '<_m:blogs_category>' => '<_m>/default/index',
+                'blogs' => 'blogs_category/blog/index',
                 '<_m:blogs_category>/<id:\d+>-<alias:[a-zA-Z0-9_-]{1,100}+>' => '<_m>/default/view',
             ]
         );
