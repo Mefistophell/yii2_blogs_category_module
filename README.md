@@ -55,26 +55,12 @@ Configuration
     'isBackend' => true
 ],
 ```
-- Add module to [frontend] config section:
-
-```
-'blogs_category' => [
-    'controllerNamespace' => 'nill\blogs_category\controllers\frontend'
-],
-```
-
 - Add module to [common] config section:
 
 ```
 'blogs_category' => [
     'class' => 'nill\blogs_category\Module'
 ],
-```
-
-- Add alias to "common\config\aliases.php":
-
-```
-Yii::setAlias('backend', dirname(dirname(__DIR__)) . '/backend');
 ```
 
 - Add the module to extensions in the top of the file "vendor\yiisoft\extensions.php":
@@ -101,7 +87,6 @@ ALTER TABLE yii2_start_blogs ADD category_id INT(11) NOT NULL;
 OR: Apply migration with console commands:
 
 `php yii migrate --migrationPath=@nill/blogs_category/migrations`
-
 
 Backend
 ----------------------------
