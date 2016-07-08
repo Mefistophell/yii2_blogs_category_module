@@ -2,12 +2,6 @@
 
 namespace nill\blogs_category;
 
-use Yii;
-
-/**
- * Module [[Slider]]
- * Yii2 Slider module.
- */
 class Module extends \vova07\blogs\Module
 {
     

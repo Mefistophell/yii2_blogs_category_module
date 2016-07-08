@@ -3,7 +3,7 @@
 namespace nill\blogs_category\models;
 
 use nill\blogs_category\Module;
-use vova07\blogs\models\backend\Blog;
+use nill\blogs_category\models\backend\Blog;
 use Yii;
 
 /**

@@ -37,7 +37,10 @@ class BlogController extends \vova07\blogs\controllers\frontend\DefaultControlle
             ]
         ]);
 
-        $query->andFilterWhere(['like', 'category_id', $category]);
+        $query->leftJoin('{{%blogs_to_category}} bg', [
+            'id' => new \yii\db\Expression('blog_id'),
+        ]);
+        $query->andFilterWhere(['bg.category_id' => $category]);
         
         $this->setViewPath('@nill/blogs_category/views/frontend/blog');
 

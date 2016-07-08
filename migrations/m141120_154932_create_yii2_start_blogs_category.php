@@ -15,8 +15,15 @@ class m141120_154932_create_yii2_start_blogs_category extends Migration
             'id' => Schema::TYPE_PK,
             'category_name' => Schema::TYPE_STRING . '(128) NOT NULL',
             'category_description' => Schema::TYPE_TEXT . ' NOT NULL',
+            'category_image' => Schema::TYPE_STRING . '(64)',
         ], $tableOptions);
-        $this->addColumn('{{%blogs}}', 'category_id', 'int(11) NOT NULL'); 
+        $this->createTable('{{%blogs_to_category}}', [
+            'blog_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
+            'category_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
+        ], $tableOptions);
+        $this->createIndex('blog_id', '{{%blogs_to_category}}', 'blog_id');
+        $this->createIndex('category_id', '{{%blogs_to_category}}', 'category_id');
+        //$this->addColumn('{{%blogs}}', 'category_id', 'int(11) NOT NULL'); 
     }
 
     /**
