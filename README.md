@@ -6,6 +6,41 @@ This Module allows creating categories for the Blog.
 
 There is also a widget that allows you to filter the blog posts by categories for the frontend. 
 
+About
+-----
+**Version:** 0.9.1
+
+**Authors:** Mefistophell Nill
+
+TODO
+----
+
+```
+public function setCategory()
+{
+    $post = Yii::$app->request->post('Blog');
+    if (!$this->isNewRecord) {
+        Yii::$app->db->createCommand()->update('{{%blogs_to_category}}', ['category_id' => $post['category'], 'blog_id' => $this->id], ['blog_id' => $this->id])->execute();
+        return true;
+    } 
+}
+```
+
+The temporary decision. I shall be grateful for improvement.
+
+```
+public function afterSave($insert, $changedAttributes)
+{
+    parent::afterSave($insert, $changedAttributes);
+
+    if (!$this->category) {
+        $post = Yii::$app->request->post('Blog');
+        Yii::$app->db->createCommand()->insert('{{%blogs_to_category}}', ['category_id' => $post['category'], 'blog_id' => $this->id], ['blog_id' => $this->id])->execute();
+        return true;
+    }
+}
+```
+
 Requirements
 ------------
 

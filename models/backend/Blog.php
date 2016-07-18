@@ -40,20 +40,32 @@ class Blog extends \vova07\blogs\models\backend\Blog
 //
 //        return $row['category_id'];
 //    }
-    
-    
-    public function setCategory() {
-        if (!$this->isNewRecord) {   
-            $post = Yii::$app->request->post('Blog');
+
+
+    public function setCategory()
+    {
+        $post = Yii::$app->request->post('Blog');
+        if (!$this->isNewRecord) {
             Yii::$app->db->createCommand()->update('{{%blogs_to_category}}', ['category_id' => $post['category'], 'blog_id' => $this->id], ['blog_id' => $this->id])->execute();
             return true;
-        }
+        } 
     }
 
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id'])
                 ->viaTable('{{%blogs_to_category}}', ['blog_id' => 'id']);
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        
+        if (!$this->category) {
+            $post = Yii::$app->request->post('Blog');
+            Yii::$app->db->createCommand()->insert('{{%blogs_to_category}}', ['category_id' => $post['category'], 'blog_id' => $this->id], ['blog_id' => $this->id])->execute();
+            return true;
+        }
     }
 
 }
