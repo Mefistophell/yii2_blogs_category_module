@@ -29,15 +29,13 @@ class BlogController extends \vova07\blogs\controllers\frontend\DefaultControlle
     public function actionIndex($category = '')
     {
 
-        $query = Blog::find()->published();
+        $query = Blog::find()->published()->filterCategory($category);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pageSize' => $this->module->recordsPerPage
             ]
         ]);
-
-        $query->andFilterWhere(['like', 'category_id', $category]);
         
         $this->setViewPath('@nill/blogs_category/views/frontend/blog');
 

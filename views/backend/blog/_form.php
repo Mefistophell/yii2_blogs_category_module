@@ -34,7 +34,7 @@ use yii\helpers\ArrayHelper;
 <div class="row">
     <div class="col-sm-12">
         <?php
-        echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(
+        echo $form->field($model, 'category')->dropDownList(ArrayHelper::map(
                 Category::find()->asArray()->all(), 'id', 'category_name'), ['prompt' => 'Select category']);
 
         ?>

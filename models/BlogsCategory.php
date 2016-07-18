@@ -3,7 +3,7 @@
 namespace nill\blogs_category\models;
 
 use nill\blogs_category\Module;
-use vova07\blogs\models\backend\Blog;
+use nill\blogs_category\models\backend\Blog;
 use Yii;
 
 /**
@@ -76,7 +76,7 @@ class BlogsCategory extends \yii\db\ActiveRecord
             ->all();
         
         /*
-        * if need get only Category Name used: 
+        * If it is necessary to receive only the name of a category then use:
         * @return array value category_name
             
         foreach ($customers as $key=>$value) {

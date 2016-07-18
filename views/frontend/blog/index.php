@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </aside>
 
     <div class="col-sm-8 col-sm-pull-4">
-        <?php echo WidgetCategory::widget(); ?>
+        <?php //echo WidgetCategory::widget(); ?>
         <?=
         ListView::widget(
             [
