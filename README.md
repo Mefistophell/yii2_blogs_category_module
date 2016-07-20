@@ -6,6 +6,8 @@ This Module allows creating categories for the Blog.
 
 There is also a widget that allows you to filter the blog posts by categories for the frontend. 
 
+> Does not require to change Blog Module!
+
 About
 -----
 **Version:** 0.9.1
@@ -97,12 +99,6 @@ Configuration
 'blogs_category' => [
     'class' => 'nill\blogs_category\Module'
 ],
-```
-
-- Add alias to "common\config\aliases.php":
-
-```
-Yii::setAlias('backend', dirname(dirname(__DIR__)) . '/backend');
 ```
 
 - Add the module to extensions in the top of the file "vendor\yiisoft\extensions.php":
