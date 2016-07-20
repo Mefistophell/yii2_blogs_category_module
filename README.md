@@ -90,13 +90,6 @@ Configuration
     'isBackend' => true
 ],
 ```
-- Add module to [frontend] config section:
-
-```
-'blogs_category' => [
-    'controllerNamespace' => 'nill\blogs_category\controllers\frontend'
-],
-```
 
 - Add module to [common] config section:
 
